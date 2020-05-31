@@ -25,7 +25,7 @@ SECRET_KEY = '5m=w6gajdgr8u3182#ysn^(+#-f1%ebqg&^2@8a=%%ye2_i**k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.44']
+ALLOWED_HOSTS = ['192.168.1.44', '192.168.43.210']
 
 
 # Application definition
@@ -103,6 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -121,3 +123,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "chat/static/"
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    'static'
+)
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
